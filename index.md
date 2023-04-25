@@ -1,12 +1,12 @@
-## Lab Report 2
+# Lab Report 2
 
-# Part 1 - String Server
+## Part 1 - String Server
 
 For part 1 of the lab report, the assignment was to create a web server called String Server that keeps track of a single string that gets added to by incoming requests. I created this server by expanding off the web server that I created in the Week 2 Lab. 
 
 The code for the lab consists of two files, Server.java and StringServer.java, as can be seen below: cv
 
-# Server.java (supplied as is from the Week 2 Lab)
+### Server.java (supplied as is from the Week 2 Lab)
 
 ``` // A simple web server using Java's built-in HttpServer
 
@@ -59,6 +59,61 @@ public class Server {
         //start the server
         server.start();
         System.out.println("Server Started! Visit http://localhost:" + port + " to visit.");
+    }
+}
+```
+
+### StringServer.java (
+```
+import java.io.IOException;
+import java.net.URI;
+
+class Handler implements URLHandler {
+    String savedStrings = "";
+
+    public String handleRequest(URI url) {
+        //Home page
+        if (url.getPath().equals("/")) {
+            return String.format("Welcome to string server! Use /add-message?s=<string> to add to the list of strings stored on this server");
+        }
+        else 
+        {
+            System.out.println("Path: " + url.getPath());
+            //Add a string to the list
+            if (url.getPath().contains("/add-message")) {
+                String[] parameters = url.getQuery().split("=");
+                if (parameters[0].equals("s")) {
+                    //First message
+                    if (savedStrings == "")
+                    {
+                        savedStrings = parameters[1];
+                    }
+                    //Later messages
+                    else
+                    {
+                        savedStrings = savedStrings + "\n" + parameters[1];
+                    }
+
+                    return savedStrings;
+                }
+            }
+            
+            //Else if invalid address return error message
+            return "404 Not Found!";
+        }
+    }
+}
+
+class StringServer {
+    public static void main(String[] args) throws IOException {
+        if(args.length == 0){
+            System.out.println("Missing port number! Try any number between 1024 to 49151");
+            return;
+        }
+
+        int port = Integer.parseInt(args[0]);
+
+        Server.start(port, new Handler());
     }
 }
 ```
