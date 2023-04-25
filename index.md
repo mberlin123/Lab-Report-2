@@ -127,7 +127,7 @@ In this screenshot, a very similar url has been called again, except the string 
 ## Part 2 - Bugs
 
 Not all programs work correctly on the first try. This can be demonstrated with the function reverseInPlace() in Lab 3. The function takes one argument, an int array called `int[] args`, which it changes to be in reverse order. That is, after calling reverseInPlace(), whatever array you pass to it will have it's lowest and highest index item swapped, as well as it's next lowest and next highest, and so forth. However, as implemented, it contains bugs and does not work! This can be seen in the tests of the following screenshot:
-(Insert image here)
+[Image](lab3part2.1.png)
 Although the first test passes successfully, the next two tests both fail. This can be seen in this screenshot:
 (Insert image here)
 Why is this? Well to understand requires analyzing the code:
