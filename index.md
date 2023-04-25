@@ -12,20 +12,20 @@ The code for the lab consists of two files, Server.java and StringServer.java, a
 
 // Examples from https://dzone.com/articles/simple-http-server-in-java were useful references
 
-import java.io.IOException;
+`import java.io.IOException;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.net.URI;
 
-import com.sun.net.httpserver.HttpExchange;
+`import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
 
 interface URLHandler {
     String handleRequest(URI url);
-}
+}`
 
-class ServerHttpHandler implements HttpHandler {
+`class ServerHttpHandler implements HttpHandler {
     URLHandler handler;
     ServerHttpHandler(URLHandler handler) {
       this.handler = handler;
@@ -47,9 +47,9 @@ class ServerHttpHandler implements HttpHandler {
             os.close();
         }
     }
-}
+}`
 
-public class Server {
+`public class Server {
     public static void start(int port, URLHandler handler) throws IOException {
         HttpServer server = HttpServer.create(new InetSocketAddress(port), 0);
 
@@ -60,4 +60,4 @@ public class Server {
         server.start();
         System.out.println("Server Started! Visit http://localhost:" + port + " to visit.");
     }
-} `
+}`
