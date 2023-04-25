@@ -8,7 +8,7 @@ The code for the lab consists of two files, Server.java and StringServer.java, a
 
 # Server.java (supplied as is from the Week 2 Lab)
 
-// A simple web server using Java's built-in HttpServer
+``` // A simple web server using Java's built-in HttpServer
 
 // Examples from https://dzone.com/articles/simple-http-server-in-java were useful references
 
@@ -61,3 +61,4 @@ public class Server {
         System.out.println("Server Started! Visit http://localhost:" + port + " to visit.");
     }
 }
+```
