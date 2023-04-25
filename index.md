@@ -118,4 +118,7 @@ class StringServer {
 ```
 
 ### String Server Demonstration
-![Imgae](stringserver1.png)
+Here is a demonstration and explanation of how the program works:
+![Image](Stringserver1.png)
+As can be seen in the above screenshot, the program works by going to the web address http://localhost:[your-port]/add-message?s=[your-string] (although replace [your-port] with the port you gave as an argument when starting the program from the command line and replace [your-string] with your desired string. Upon loading the page, the program calls the function `handleRequest()` (the main function in the program in terms of user-end functionality) with the URL as an argument to the function. In this image, this is the first time a "add-message" url was loaded, and as such the string the server stored (the only class field stored in this program) was empty before loading the page. However, upon loading the page, the string "example1" is addded to the stored string. The stored string is then printed out on the webpage which can be seen in the screenshot.
+![Image](Stringserver2.png)
