@@ -115,4 +115,7 @@ class StringServer {
         Server.start(port, new Handler());
     }
 }
-``
+```
+
+### String Server Demonstration
+![Imgae](stringserver1.png)
