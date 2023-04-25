@@ -7,7 +7,8 @@ For part 1 of the lab report, the assignment was to create a web server called S
 The code for the lab consists of two files, Server.java and StringServer.java, as can be seen below: cv
 
 ### Server.java (supplied as is from the Week 2 Lab)
-``` // A simple web server using Java's built-in HttpServer
+``` 
+// A simple web server using Java's built-in HttpServer
 
 // Examples from https://dzone.com/articles/simple-http-server-in-java were useful references
 
