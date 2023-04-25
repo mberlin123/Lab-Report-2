@@ -125,3 +125,33 @@ As can be seen in the above screenshot, the program works by going to the web ad
 In this screenshot, a very similar url has been called again, except the string this time is "example2" instead of "example1". As before, the URL is passed to `handleRequest()` and "example2" is added to the stored string. The major difference in behavior from the program that can be seen in this screenshot is that the stored string remembered the string from the last screenshot ("example1") as it can be seen printed out before the string that was added in this screenshot.
 
 ## Part 2 - Bugs
+
+Not all programs work correctly on the first try. This can be demonstrated with the function reverseInPlace() in Lab 3. The function takes one argument, an int array called `int[] args`, which it changes to be in reverse order. That is, after calling reverseInPlace(), whatever array you pass to it will have it's lowest and highest index item swapped, as well as it's next lowest and next highest, and so forth. However, as implemented, it contains bugs and does not work! This can be seen in the tests of the following screenshot:
+(Insert image here)
+Although the first test passes successfully, the next two tests both fail. This can be seen in this screenshot:
+(Insert image here)
+Why is this? Well to understand requires analyzing the code:
+```
+// Changes the input array to be in reversed order
+  static void reverseInPlace(int[] arr) {
+    for(int i = 0; i < arr.length; i += 1) {
+      arr[i] = arr[arr.length - i - 1];
+    }
+  }
+```
+As can be seen, every element in the array is swapped with the opposite element in the array when this function is called. However, as the function progresses linearly through the array without any buffering, the second half of the array will simply swap with it's mirror element which means the second half of the array will remain unchanged! To fix the code, the following changes are required:
+```
+// Changes the input array to be in reversed order
+  static void reverseInPlace(int[] arr) {
+    for(int i = 0; i < arr.length; i += 1) { //Change "i < arr.length;" to "i < arr.length / 2;"
+      int temp = arr[i]; //added temporary storage buffer
+      arr[i] = arr[arr.length - i - 1];
+      arr[arr.length - i - 1] = temp; //added secondary swap for back element with mirror buffer
+    }
+  }
+```
+As can be seen, in this new bugless function, only the first half of the array is looped through. However, both the front and mirror elements are swapped correctly for each iteration using temporary buffering meaning the array successfully swaps. 
+
+## Part 3 - Learning
+
+One interesting thing that I learned in lab 2 was how URL's work. I learned that a URL actually consists of several components, such as the protocol, the domain name, the path, and the query string. The protocol indicates the type of communication that will be used to access the resource, such as http or https. The domain name is the name of the server that hosts the resource, such as google.com or bing.com. The path is the address to the accessed file on the server (similar to a file path on a local storage system). Finally, the query string contains additional information, such as q=keyword. This was all very useful information that I was glad to have learned.
